@@ -41,10 +41,10 @@ type Article struct {
 	SubsectionName string       `json:"subsection_name"`
 	TypeOfMaterial string       `json:"type_of_material"`
 	Id             string       `json:"_id"`
-	WordCount      string       `json:"word_count"`
 	Multimetdia    []multimedia `json:"multimedia"`
 
 	// TODO(giorgi)
+	// WordCount      string       `json:"word_count"`
 	// ByLine         byline       `json:"byline"`
 	// Blog          []struct {
 	// } `json:"blog"`
@@ -104,6 +104,24 @@ type ArticleRequestOptions struct {
 func WithBeginDate(date string) Option {
 	return func(opts *ArticleRequestOptions) {
 		opts.opts["begin_date"] = date
+	}
+}
+
+func WithEndDate(date string) Option {
+	return func(opts *ArticleRequestOptions) {
+		opts.opts["end_date"] = date
+	}
+}
+
+func SortedByNewest() Option {
+	return func(opts *ArticleRequestOptions) {
+		opts.opts["sort"] = "newest"
+	}
+}
+
+func SortedByOldest() Option {
+	return func(opts *ArticleRequestOptions) {
+		opts.opts["sort"] = "oldest"
 	}
 }
 
