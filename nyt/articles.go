@@ -101,12 +101,18 @@ type ArticleRequestOptions struct {
 	opts map[string]string
 }
 
+// WithBeginDate restricts responses to results with publication dates
+// of the date specified or later.
+// Date format: "YYYYMMDD"
 func WithBeginDate(date string) Option {
 	return func(opts *ArticleRequestOptions) {
 		opts.opts["begin_date"] = date
 	}
 }
 
+// WithBeginDate restricts responses to results with publication dates
+// of the date specified or earlier.
+// Date format: "YYYYMMDD"
 func WithEndDate(date string) Option {
 	return func(opts *ArticleRequestOptions) {
 		opts.opts["end_date"] = date
